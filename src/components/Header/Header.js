@@ -9,6 +9,7 @@ function Header() {
     const authContext = useContext(AuthenticationContext);
     const onOpenHome = () => history.push('/');
     const onOpenLoginForm = () => history.push(LINK.login);
+    const onLogout = () => authContext.setToken('');
 
     return (
         <header>
@@ -19,6 +20,7 @@ function Header() {
                         <Button
                             variant="link"
                             className='admin-button'
+                            onClick={() => onLogout()}
                         >Logout</Button> :
                         <Button
                             className='admin-button'

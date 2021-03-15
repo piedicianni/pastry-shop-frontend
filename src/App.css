@@ -19,3 +19,44 @@ header .navbar .admin-button{
   width: 40%;
   max-width: 380px;
 }
+
+.products-list-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.card-preview, .card-create{
+  width: 18rem;
+  margin: 0.2rem;
+}
+.card-preview .card-body .button-group{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-create{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12.8rem;
+  border-radius: .25rem;
+  padding: 0.6rem;
+  background-color: transparent !important;
+  border: 3px dashed #343a40;
+  color: #343a40 !important;
+  cursor: pointer;
+}
+
+.card-create p{
+  margin: 0;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.card-details{
+  width: 90%;
+  max-width: 600px;
+}

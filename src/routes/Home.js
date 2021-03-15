@@ -1,10 +1,9 @@
 import React from 'react'
+import ProductsList from '../containers/ProductsList';
 
 function Home() {
     return (
-        <div>
-            Home
-        </div>
+        <ProductsList />
     )
 }
 
