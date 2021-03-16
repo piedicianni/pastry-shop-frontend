@@ -9,7 +9,10 @@ function Header() {
     const authContext = useContext(AuthenticationContext);
     const onOpenHome = () => history.push('/');
     const onOpenLoginForm = () => history.push(LINK.login);
-    const onLogout = () => authContext.setToken('');
+    const onLogout = () => {
+        authContext.setToken('');
+        onOpenHome();
+    };
 
     return (
         <header>

@@ -6,7 +6,7 @@ function CardPreview({
     header = 'Header',
     title = 'Title',
     body = 'Message',
-    editButton = false,
+    isAdmin = false,
     onClickDetails
 }) {
     return (
@@ -20,10 +20,13 @@ function CardPreview({
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>{body}</Card.Text>
                 <div className='button-group'>
-                    <Button variant='outline-light' onClick={onClickDetails}>Dettaglio</Button>
+                    <Button
+                        variant={!isAdmin ? 'outline-light' : 'outline-warning'}
+                        onClick={onClickDetails}
+                    >Dettaglio</Button>
                     {
-                        editButton && (
-                            <Button variant='outline-warning'>Modifica</Button>
+                        isAdmin && (
+                            <Button variant='outline-danger'>Elimina</Button>
                         )
                     }
                 </div>
@@ -36,7 +39,7 @@ CardPreview.propTypes = {
     header: PropTypes.string,
     title: PropTypes.string,
     body: PropTypes.string,
-    editButton: PropTypes.bool,
+    isAdmin: PropTypes.bool,
     onClickDetails: PropTypes.func.isRequired
 };
 

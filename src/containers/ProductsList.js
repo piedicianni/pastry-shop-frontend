@@ -33,7 +33,7 @@ function ProductsList() {
                         body={
                             product.ingredients.map(ingredient => ingredient.name).join(',')
                         }
-                        editButton={authContext.token !== ''}
+                        isAdmin={authContext.token !== ''}
                         onClickDetails={() => onOpenProduct(product._id)}
                     />
                 ))

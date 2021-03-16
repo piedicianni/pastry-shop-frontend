@@ -1,7 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect, useState, createContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useState, createContext } from 'react';
 import { Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import { LINK } from './constants/params';
@@ -13,12 +12,6 @@ export const AuthenticationContext = createContext();
 
 function App() {
   const [token, setToken] = useState('');
-  let history = useHistory();
-
-  useEffect(() => {
-    if(token === '') return;
-    history.push('/');
-  }, [token, history]);
 
   return (
     <AuthenticationContext.Provider
