@@ -4,7 +4,8 @@ import CardPreview from '../components/CardPreview/CardPreview';
 import { products as productsApi } from '../services/requests/products';
 import { AuthenticationContext } from '../App';
 import CardCreate from '../components/CardCreate/CardCreate';
-import {getProductURL} from '../utils/utils';
+import { getProductURL } from '../utils/utils';
+import { LINK } from '../constants/constants';
 
 function ProductsList() {
     const [products, setProducts] = useState([]);
@@ -20,7 +21,7 @@ function ProductsList() {
     }, [authContext.token]);
 
     const onOpenProduct = (id) => history.push(getProductURL(id));
-    const onCreateProduct = () => {}; 
+    const onCreateProduct = () => history.push(LINK.createProduct);
 
     return (
         <div className='products-list-container'>

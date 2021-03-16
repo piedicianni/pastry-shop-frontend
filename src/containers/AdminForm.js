@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Alert } from 'react-bootstrap';
-import LoginForm from '../components/LoginForm/LoginForm';
+import ReferenceForm from '../components/ReferenceForm/ReferenceForm';
 import login from '../services/requests/login';
 import { useHistory } from 'react-router-dom';
 import { AuthenticationContext } from '../App';
@@ -41,7 +41,7 @@ function AdminForm() {
                         <p>Unauthorized</p>
                     </Alert>)
             }
-            <LoginForm
+            <ReferenceForm
                 email={email}
                 setEmail={setEmail}
                 password={password}

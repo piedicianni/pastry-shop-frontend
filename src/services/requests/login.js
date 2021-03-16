@@ -1,4 +1,4 @@
-import { BASE_URL } from '../../constants/params';
+import { BASE_URL } from '../../constants/constants';
 import { fetchData, handlerError } from '../services';
 
 const login = (email = '', password = '') => {

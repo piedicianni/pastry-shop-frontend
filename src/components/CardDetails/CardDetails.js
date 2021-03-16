@@ -1,21 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from 'react-bootstrap';
+import CardLarge from '../CardLarge';
 
 function CardDetails({ name, price, ingredients }) {
     return (
-        <Card
-            bg='dark'
-            text='white'
-            className="mb-2 card-details"
-        >
-            <Card.Header>{name}</Card.Header>
-            <Card.Body>
+        <CardLarge
+            header={name}
+            bodyElement={
                 <div>
                     <p>Prezzo: {price}</p>
+                    <span>Lista ingredienti:</span>
+                    <ul>
+                        {
+                            ingredients.map((ingredient, index) => (
+                                <li key={index}>{ingredient.name} {ingredient.value}{ingredient.units}</li>
+                            ))
+                        }
+                    </ul>
                 </div>
-            </Card.Body>
-        </Card>
+            } />
     )
 }
 

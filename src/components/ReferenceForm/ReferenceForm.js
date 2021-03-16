@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 
-function LoginForm({ email, setEmail, password, setPassword, onSubmit }) {
+function ReferenceForm({ email, setEmail, password, setPassword, onSubmit }) {
 
     return (
         <Form className='login-form' onSubmit={(e) => onSubmit(e)}>
@@ -28,7 +28,7 @@ function LoginForm({ email, setEmail, password, setPassword, onSubmit }) {
     )
 }
 
-LoginForm.propTypes = {
+ReferenceForm.propTypes = {
     email: PropTypes.string.isRequired,
     setEmail: PropTypes.func.isRequired,
     password: PropTypes.string.isRequired,
@@ -36,4 +36,4 @@ LoginForm.propTypes = {
     onSubmit: PropTypes.func.isRequired
 }
 
-export default LoginForm;
+export default ReferenceForm;

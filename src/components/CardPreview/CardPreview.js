@@ -19,18 +19,18 @@ function CardPreview({
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>{body}</Card.Text>
-                <div className='button-group'>
-                    <Button
-                        variant={!isAdmin ? 'outline-light' : 'outline-warning'}
-                        onClick={onClickDetails}
-                    >Dettaglio</Button>
-                    {
-                        isAdmin && (
-                            <Button variant='outline-danger'>Elimina</Button>
-                        )
-                    }
-                </div>
             </Card.Body>
+            <div className='button-group'>
+                <Button
+                    variant={!isAdmin ? 'outline-light' : 'outline-warning'}
+                    onClick={onClickDetails}
+                >Dettaglio</Button>
+                {
+                    isAdmin && (
+                        <Button variant='outline-danger'>Elimina</Button>
+                    )
+                }
+            </div>
         </Card>
     )
 }

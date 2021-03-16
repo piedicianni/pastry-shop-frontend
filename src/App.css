@@ -27,12 +27,22 @@ header .navbar .admin-button{
   width: 100%;
 }
 
+.mb-2 .card-header{
+  font-weight: bold;
+}
+
 .card-preview, .card-create{
   width: 18rem;
   margin: 0.2rem;
 }
-.card-preview .card-body .button-group{
+
+.card-preview .card-body p{
+  font-size: 0.8rem;
+}
+
+.card-preview .button-group{
   display: flex;
+  padding: 1rem;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -56,7 +66,7 @@ header .navbar .admin-button{
   font-size: 1.2rem;
 }
 
-.card-details{
+.card-large{
   width: 90%;
-  max-width: 600px;
+  max-width: 500px;
 }

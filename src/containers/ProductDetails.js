@@ -1,37 +1,17 @@
-import { useEffect, useState, useContext } from 'react';
+import PropTypes from 'prop-types';
+import WithProduct from '../hoc/WithProduct';
 import CardDetails from '../components/CardDetails/CardDetails';
-import { productDetails } from '../services/requests/products';
-import NotFound from '../components/NotFound';
-import { AuthenticationContext } from '../App';
 
-function ProductDetails({ id }) {
-    const [product, setProduct] = useState({
-        name: '',
-        price: '',
-        ingredients: []
-    });
-    const [wasNotFound, setWasNotFound] = useState(false);
-    const authContext = useContext(AuthenticationContext);
-
-    useEffect(() => {
-        const [productPromise, productController] = productDetails(id, authContext.token);
-        productPromise()
-            .then(res => setProduct(res))
-            .catch(error => setWasNotFound(true));
-        return () => productController.abort();
-    }, [id, authContext.token])
-
+function ProductDetails({ name, price, ingredients }) {
     return (
-        <>
-            {
-                product.name !== '' &&
-                <CardDetails {...product} price={product.price.toString()} />
-            }
-            {
-                wasNotFound && <NotFound />
-            }
-        </>
+        <CardDetails name={name} price={price} ingredients={ingredients} />
     )
 }
 
-export default ProductDetails;
+ProductDetails.propTypes = {
+    name: PropTypes.string,
+    price: PropTypes.string,
+    ingredients: PropTypes.array
+};
+
+export default WithProduct(ProductDetails);

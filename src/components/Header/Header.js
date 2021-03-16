@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Navbar, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { LINK } from '../../constants/params';
+import { LINK } from '../../constants/constants';
 import { AuthenticationContext } from '../../App';
 
 function Header() {
