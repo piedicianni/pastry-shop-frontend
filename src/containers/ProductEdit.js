@@ -10,7 +10,10 @@ import { AuthenticationContext } from '../App';
 
 function ProductEdit({ _id = '', name = '', price = '', ingredients = [], sale = false }) {
     const [nameValue, setNameValue] = useState(name);
-    const [priceValue, setPriceValue] = useState(priceFloat(price, '€').toString());
+    const [priceValue, setPriceValue] = useState(price !== ''
+        ? priceFloat(price, '€').toString()
+        : ''
+    );
     const [ingredientsValue, setIngredientsValue] = useState(ingredients);
     const [saleValue, setSaleValue] = useState(sale);
     const [ingredientsList, setIngredientsList] = useState([]);
@@ -33,18 +36,18 @@ function ProductEdit({ _id = '', name = '', price = '', ingredients = [], sale =
     }, []);
 
     useEffect(() => {
-        if(ingredientsList.length === 0) return;
-        const { value, _id: idRef, ...params } =  ingredientsList[0];
+        if (ingredientsList.length === 0) return;
+        const { value, _id: idRef, ...params } = ingredientsList[0];
         setNewIngredient(prevState => ({ ...prevState, ...params, idRef }));
     }, [ingredientsList]);
 
     useEffect(() => {
-        if(Object.keys(submit).length === 0) return;
-        const [updatePromise, updateController] = updateProduct(_id, submit, authContext.token);
-        updatePromise()
+        if (Object.keys(submit).length === 0) return;
+        const [promise, controller] = updateProduct(_id, submit, authContext.token);
+        promise()
             .then(res => history.push('/'))
             .catch(error => console.log(error));
-        return () => updateController.abort();
+        return () => controller.abort();
     }, [submit, _id, authContext.token, history]);
 
     const areOnlyNumberAndDot = (value) => (/^\d*\.?\d*$/).test(value);
@@ -59,7 +62,7 @@ function ProductEdit({ _id = '', name = '', price = '', ingredients = [], sale =
         setIngredientsValue(prevState => [...prevState, newIngredient]);
     };
     const onSubmit = (event) => {
-        if(parseFloat(priceValue) > 0){
+        if (parseFloat(priceValue) > 0) {
             setSubmit({
                 name: nameValue,
                 price: `${priceValue}€`,

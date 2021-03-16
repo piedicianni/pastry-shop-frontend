@@ -15,7 +15,7 @@ const WithProduct = WrappedComponent => function Component({ id }) {
     const authContext = useContext(AuthenticationContext);
 
     useEffect(() => {
-        if(!id) return;
+        if(id === undefined) return;
         const [productPromise, productController] = productDetails(id, authContext.token);
         productPromise()
             .then(res => setProduct(res))
@@ -28,7 +28,7 @@ const WithProduct = WrappedComponent => function Component({ id }) {
     return (
         <>
             {
-                product.name !== '' &&
+                (product.name !== '' || id === undefined) &&
                 <WrappedComponent id={id} {...product} price={product.price.toString()} />
             }
             {
