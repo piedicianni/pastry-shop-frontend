@@ -3,20 +3,22 @@ import { useHistory } from 'react-router-dom';
 import WithProduct from '../hoc/WithProduct';
 import PropTypes from 'prop-types';
 import CardForm from '../components/CardForm/CardForm';
-import { priceFloat } from '../utils/utils';
+import { priceFloat, areOnlyNumbersAndDots, areOnlyNumbers } from '../utils/utils';
 import ingredientsListApi from '../services/requests/ingredientsList';
-import { updateProduct } from '../services/requests/products';
+import { updateProduct, createProduct } from '../services/requests/products';
 import { AuthenticationContext } from '../App';
 
-function ProductEdit({ _id = '', name = '', price = '', ingredients = [], sale = false }) {
+function ProductEdit({ _id = '', name = '', price = '', ingredients = [], availability = 1, sale = false }) {
     const [nameValue, setNameValue] = useState(name);
-    const [priceValue, setPriceValue] = useState(price !== ''
-        ? priceFloat(price, '€').toString()
-        : ''
+    const [priceValue, setPriceValue] = useState(
+        price !== ''
+            ? priceFloat(price, '€').toString()
+            : ''
     );
     const [ingredientsValue, setIngredientsValue] = useState(ingredients);
     const [saleValue, setSaleValue] = useState(sale);
     const [ingredientsList, setIngredientsList] = useState([]);
+    const [availabilityValue, setAvailabilityValue] = useState(availability);
     const [newIngredient, setNewIngredient] = useState({
         idRef: '',
         name: '',
@@ -43,19 +45,22 @@ function ProductEdit({ _id = '', name = '', price = '', ingredients = [], sale =
 
     useEffect(() => {
         if (Object.keys(submit).length === 0) return;
-        const [promise, controller] = updateProduct(_id, submit, authContext.token);
+        const [promise, controller] =
+            _id !== ''
+                ? updateProduct(_id, submit, authContext.token)
+                : createProduct(submit, authContext.token);
         promise()
             .then(res => history.push('/'))
             .catch(error => console.log(error));
         return () => controller.abort();
     }, [submit, _id, authContext.token, history]);
 
-    const areOnlyNumberAndDot = (value) => (/^\d*\.?\d*$/).test(value);
     const onSetName = (value) => setNameValue(value);
-    const onSetPrice = (value) => areOnlyNumberAndDot(value) && setPriceValue(value);
+    const onSetPrice = (value) => areOnlyNumbersAndDots(value) && setPriceValue(value);
+    const onSetAvailability = (value) => areOnlyNumbers(value) && setAvailabilityValue(value);
     const onSetSale = (value) => setSaleValue(value);
     const onSetIngredient = (params) => {
-        if (params?.hasOwnProperty('value') && !areOnlyNumberAndDot(params.value)) return;
+        if (params?.hasOwnProperty('value') && !areOnlyNumbersAndDots(params.value)) return;
         setNewIngredient(prevState => ({ ...prevState, ...params }));
     };
     const onAddIngredient = () => {
@@ -67,6 +72,7 @@ function ProductEdit({ _id = '', name = '', price = '', ingredients = [], sale =
                 name: nameValue,
                 price: `${priceValue}€`,
                 ingredients: ingredientsValue,
+                availability: availabilityValue,
                 sale: saleValue
             });
         }
@@ -81,6 +87,8 @@ function ProductEdit({ _id = '', name = '', price = '', ingredients = [], sale =
             onSetPrice={onSetPrice}
             ingredients={ingredientsValue}
             sale={saleValue}
+            availability={availabilityValue}
+            onSetAvailability={onSetAvailability}
             onSetSale={onSetSale}
             newIngredient={newIngredient}
             setNewIngredient={onSetIngredient}

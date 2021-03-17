@@ -23,7 +23,7 @@ function ReferenceForm({ email, setEmail, password, setPassword, onSubmit }) {
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </Form.Group>
-            <Button variant="primary" type="submit">Submit</Button>
+            <Button variant="outline-primary" type="submit">Submit</Button>
         </Form>
     )
 }

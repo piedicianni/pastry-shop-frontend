@@ -17,7 +17,7 @@ const fetchData = (url, params) => {
             const json = await resp.json();
             return _.cloneDeep(json);
         } catch (error) {
-            return error.name !== 'AbortError' && handlerError({ error: error });
+            return handlerError({ error: error });
         }
     };
     return [start, controller];

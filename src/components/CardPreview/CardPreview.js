@@ -6,8 +6,10 @@ function CardPreview({
     header = 'Header',
     title = 'Title',
     body = 'Message',
+    belowText = 'Below',
     isAdmin = false,
-    onClickDetails
+    onClickDetails,
+    onClickDelete = () => { }
 }) {
     return (
         <Card
@@ -19,6 +21,7 @@ function CardPreview({
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>{body}</Card.Text>
+                <Card.Text>{belowText}</Card.Text>
             </Card.Body>
             <div className='button-group'>
                 <Button
@@ -27,7 +30,10 @@ function CardPreview({
                 >Dettaglio</Button>
                 {
                     isAdmin && (
-                        <Button variant='outline-danger'>Elimina</Button>
+                        <Button
+                            variant='outline-danger'
+                            onClick={onClickDelete}
+                        >Elimina</Button>
                     )
                 }
             </div>
@@ -39,8 +45,10 @@ CardPreview.propTypes = {
     header: PropTypes.string,
     title: PropTypes.string,
     body: PropTypes.string,
+    belowText: PropTypes.string,
     isAdmin: PropTypes.bool,
-    onClickDetails: PropTypes.func.isRequired
+    onClickDetails: PropTypes.func.isRequired,
+    onClickDelete: PropTypes.func
 };
 
 export default CardPreview;

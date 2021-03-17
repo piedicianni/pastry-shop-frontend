@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CardLarge from '../CardLarge';
 
-function CardDetails({ name, price, ingredients }) {
+function CardDetails({ name, price, ingredients, availability }) {
     return (
         <CardLarge
             header={name}
@@ -17,6 +17,7 @@ function CardDetails({ name, price, ingredients }) {
                             ))
                         }
                     </ul>
+                    <p>Disponibilità: {availability}</p>
                 </div>
             } />
     )
@@ -25,7 +26,8 @@ function CardDetails({ name, price, ingredients }) {
 CardDetails.propTypes = {
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    ingredients: PropTypes.array.isRequired
+    ingredients: PropTypes.array.isRequired,
+    availability: PropTypes.number.isRequired
 };
 
 export default CardDetails;

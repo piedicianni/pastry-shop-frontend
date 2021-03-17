@@ -9,6 +9,8 @@ function CardForm({
     price,
     onSetPrice,
     ingredients,
+    availability,
+    onSetAvailability,
     sale,
     onSetSale,
     newIngredient,
@@ -23,6 +25,7 @@ function CardForm({
             bodyElement={
                 <Form onSubmit={(e) => onSubmit(e)}>
                     <Form.Group>
+                        <Form.Label>Nome</Form.Label>
                         <Form.Control
                             required
                             type="text"
@@ -31,6 +34,7 @@ function CardForm({
                             onChange={e => onSetName(e.target.value)} />
                     </Form.Group>
                     <Form.Group>
+                        <Form.Label>Prezzo</Form.Label>
                         <Form.Control
                             required
                             type="text"
@@ -83,6 +87,17 @@ function CardForm({
                         </Form.Group>
                     </Form.Row>
                     <Form.Group>
+                        <Form.Label>Disponibilità</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            size="sm"
+                            value={availability}
+                            onChange={e => onSetAvailability(parseInt(e.target.value))}
+                            placeholder="Disponibilità"
+                        />
+                    </Form.Group>
+                    <Form.Group>
                         <Form.Check
                             type="switch"
                             id="sale-switch"
@@ -103,6 +118,8 @@ CardForm.propTypes = {
     price: PropTypes.string,
     onSetPrice: PropTypes.func,
     ingredients: PropTypes.array,
+    availability: PropTypes.number,
+    onSetAvailability: PropTypes.func,
     sale: PropTypes.bool,
     onSetSale: PropTypes.func,
     newIngredient: PropTypes.object,
