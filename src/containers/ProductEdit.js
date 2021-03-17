@@ -91,7 +91,7 @@ function ProductEdit({ _id = '', name = '', price = '', ingredients = [], availa
             onSetAvailability={onSetAvailability}
             onSetSale={onSetSale}
             newIngredient={newIngredient}
-            setNewIngredient={onSetIngredient}
+            onSetNewIngredient={onSetIngredient}
             ingredientsList={ingredientsList}
             onAddIngredient={() => onAddIngredient()}
             onSubmit={onSubmit}
@@ -104,6 +104,7 @@ ProductEdit.propTypes = {
     name: PropTypes.string,
     price: PropTypes.string,
     ingredients: PropTypes.array,
+    availability: PropTypes.number,
     sale: PropTypes.bool
 };
 

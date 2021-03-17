@@ -11,7 +11,8 @@ function ProductDetails({ name, price, ingredients, availability }) {
 ProductDetails.propTypes = {
     name: PropTypes.string,
     price: PropTypes.string,
-    ingredients: PropTypes.array
+    ingredients: PropTypes.array,
+    availability: PropTypes.number
 };
 
 export default WithProduct(ProductDetails);

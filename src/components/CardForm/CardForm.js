@@ -8,14 +8,14 @@ function CardForm({
     onSetName,
     price,
     onSetPrice,
-    ingredients,
+    ingredients = [],
     availability,
     onSetAvailability,
     sale,
     onSetSale,
     newIngredient,
-    setNewIngredient,
-    ingredientsList,
+    onSetNewIngredient,
+    ingredientsList = [],
     onAddIngredient,
     onSubmit
 }) {
@@ -60,7 +60,7 @@ function CardForm({
                                 value={newIngredient.idRef}
                                 onChange={e => {
                                     const { value, _id: idRef, ...params } = ingredientsList.find(i => i._id === e.target.value);
-                                    setNewIngredient({ ...params, idRef });
+                                    onSetNewIngredient({ ...params, idRef });
                                 }}
                             >
                                 {
@@ -75,7 +75,7 @@ function CardForm({
                                 required
                                 type="text"
                                 value={newIngredient.value}
-                                onChange={e => setNewIngredient({ value: parseFloat(e.target.value) })}
+                                onChange={e => onSetNewIngredient({ value: parseFloat(e.target.value) })}
                                 placeholder="Qty" />
                         </Form.Group>
                         <Form.Group as={Col} xs="auto">
@@ -113,20 +113,20 @@ function CardForm({
 }
 
 CardForm.propTypes = {
-    name: PropTypes.string,
-    onSetName: PropTypes.func,
-    price: PropTypes.string,
-    onSetPrice: PropTypes.func,
+    name: PropTypes.string.isRequired,
+    onSetName: PropTypes.func.isRequired,
+    price: PropTypes.string.isRequired,
+    onSetPrice: PropTypes.func.isRequired,
     ingredients: PropTypes.array,
-    availability: PropTypes.number,
-    onSetAvailability: PropTypes.func,
-    sale: PropTypes.bool,
-    onSetSale: PropTypes.func,
-    newIngredient: PropTypes.object,
-    setNewIngredient: PropTypes.func,
+    availability: PropTypes.number.isRequired,
+    onSetAvailability: PropTypes.func.isRequired,
+    sale: PropTypes.bool.isRequired,
+    onSetSale: PropTypes.func.isRequired,
+    newIngredient: PropTypes.object.isRequired,
+    onSetNewIngredient: PropTypes.func.isRequired,
     ingredientsList: PropTypes.array,
-    onAddIngredient: PropTypes.func,
-    onSubmit: PropTypes.func
+    onAddIngredient: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired
 };
 
 export default CardForm;

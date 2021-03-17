@@ -9,6 +9,7 @@ const WithProduct = WrappedComponent => function Component({ id }) {
         name: '',
         price: '',
         ingredients: [],
+        availability: 1,
         sale: false
     });
     const [wasNotFound, setWasNotFound] = useState(false);
@@ -39,7 +40,7 @@ const WithProduct = WrappedComponent => function Component({ id }) {
 }
 
 WithProduct.propTypes = {
-    id: PropTypes.number
+    id: PropTypes.string
 };
 
 export default WithProduct;

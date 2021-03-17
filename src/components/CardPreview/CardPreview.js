@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 
 function CardPreview({
-    header = 'Header',
-    title = 'Title',
-    body = 'Message',
-    belowText = 'Below',
+    header,
+    title,
+    body,
+    belowText,
     isAdmin = false,
     onClickDetails,
     onClickDelete = () => { }

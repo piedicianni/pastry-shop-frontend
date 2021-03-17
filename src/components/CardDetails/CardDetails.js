@@ -24,10 +24,10 @@ function CardDetails({ name, price, ingredients, availability }) {
 }
 
 CardDetails.propTypes = {
-    name: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    ingredients: PropTypes.array.isRequired,
-    availability: PropTypes.number.isRequired
+    name: PropTypes.string,
+    price: PropTypes.string,
+    ingredients: PropTypes.array,
+    availability: PropTypes.number
 };
 
 export default CardDetails;
