@@ -18,7 +18,10 @@ function ProductsList() {
     useEffect(() => {
         const [productsPromise, productsController] = productsApi(authContext.token);
         productsPromise()
-            .then(res => setProducts(res))
+            .then(res => {
+                setProducts(res)
+                res.length === 0 && setWasNotFound(true);
+            })
             .catch(error => setWasNotFound(true));
         return () => productsController.abort();
     }, [authContext.token]);
@@ -62,7 +65,7 @@ function ProductsList() {
                 }
             </div>
             {
-                wasNotFound && <NotFound />
+                wasNotFound && <NotFound message={'No items!'} />
             }
         </>
     )
